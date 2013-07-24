@@ -26,40 +26,47 @@ namespace MazeBuilder
         private void goButton_Click(object sender, EventArgs e)
         {
             Graphics graphicsHelper = this.CreateGraphics();
-            Pen BluePen = Pens.Blue;
-            Pen YellowPen = Pens.GreenYellow;
+            Pen BluePen = Pens.Black;
+            Pen YellowPen = Pens.Black;
 
-            int gridWidth = 10;
-            int gridHeight = 10;
+            int gridWidth = 4;
+            int gridHeight = 4;
             int squareSize = 50;
             int numberOfCorners = gridWidth * gridHeight;
             ////////////////////|
-            //int leftY = 0;
-            //int topX = 0;
             int rightY = squareSize;
             int bottomX = squareSize;
 
             List<Corner> corners = new List<Corner>(numberOfCorners);
+
             for (int i = 0; i < numberOfCorners; i++)
-            {
-                if (i == numberOfCorners - 1)
-                {
+            {                
+                if (IsLastSquareBorderSet(i, numberOfCorners))// (BottomIsUp, RightIsUp)
                     corners.Add(new Corner(false, false));
-                }
-                else if ((i + 1) % gridWidth == 0)
-                {
+                else if (IsTheEndOfTheRow(i, gridWidth))
                     corners.Add(new Corner(true, false));
-                }
-                
-                else if ((i + 1) > gridWidth * (gridHeight - 1))
-                {
+                else if (IsTheEndOfTheColumn(i, gridWidth, gridHeight))
                     corners.Add(new Corner(false, true));
-                }
                 else
-                {
                     corners.Add(new Corner(true, true));
-                }
             }
+
+            //corners.Add(new Corner(true, false));
+            //corners.Add(new Corner(false, true));
+            //corners.Add(new Corner(false, false));
+            //corners.Add(new Corner(false, false));
+            //corners.Add(new Corner(false, false));
+            //corners.Add(new Corner(false, true));
+            //corners.Add(new Corner(false, true));
+            //corners.Add(new Corner(false, false));
+            //corners.Add(new Corner(false, true));
+            //corners.Add(new Corner(false, false));
+            //corners.Add(new Corner(true, true));
+            //corners.Add(new Corner(true, false));
+            //corners.Add(new Corner(false, true));
+            //corners.Add(new Corner(false, false));
+            //corners.Add(new Corner(false, false));
+            //corners.Add(new Corner(false, false));
 
             Point cornerPoint = new Point();
             Point aboveCornerPoint = new Point();
@@ -73,22 +80,19 @@ namespace MazeBuilder
             for (int i = 0; i < numberOfCorners; i++)
             {
                 Corner corner = corners[i];
-
-
+                
                 aboveCornerPoint.Y = cornerPoint.Y - squareSize;
                 aboveCornerPoint.X = cornerPoint.X;
+
                 leftOfCornerPoint.X = cornerPoint.X - squareSize;
                 leftOfCornerPoint.Y = cornerPoint.Y;
-
-
+                
                 if (corner.BottomIsUp)
-                {
                     graphicsHelper.DrawLine(BluePen, cornerPoint, leftOfCornerPoint);
-                }
+                
                 if (corner.RightIsUp)
-                {
                     graphicsHelper.DrawLine(YellowPen, cornerPoint, aboveCornerPoint);
-                }
+                
                 if ((i + 1) % gridWidth == 0)
                 {
                     cornerPoint.X = squareSize;
@@ -98,10 +102,22 @@ namespace MazeBuilder
                 {
                     cornerPoint.X += squareSize;
                 }
+            }      
+        }
+        
+        bool IsLastSquareBorderSet(int indexOfCell, int NumberOfCorners)
+        {
+            return indexOfCell == NumberOfCorners - 1;
+        }
 
-                
+        bool IsTheEndOfTheRow(int indexOfCell, int GridWidth)
+        {
+            return (indexOfCell + 1) % GridWidth == 0;
+        }
 
-            }
+        bool IsTheEndOfTheColumn(int indexOfCell, int GridWidth, int GridHeight)
+        {
+            return (indexOfCell + 1) > GridWidth * (GridHeight - 1);
         }
     }
 }
