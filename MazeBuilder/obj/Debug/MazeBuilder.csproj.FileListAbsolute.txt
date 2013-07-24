@@ -1,1 +1,9 @@
 C:\WS\MazeBuilder\MazeBuilder\bin\Debug\MazeBuilder.exe.config
+C:\WS\MazeBuilder\MazeBuilder\bin\Debug\MazeBuilder.exe
+C:\WS\MazeBuilder\MazeBuilder\bin\Debug\MazeBuilder.pdb
+C:\WS\MazeBuilder\MazeBuilder\obj\Debug\MazeBuilder.csprojResolveAssemblyReference.cache
+C:\WS\MazeBuilder\MazeBuilder\obj\Debug\MazeBuilder.Form1.resources
+C:\WS\MazeBuilder\MazeBuilder\obj\Debug\MazeBuilder.Properties.Resources.resources
+C:\WS\MazeBuilder\MazeBuilder\obj\Debug\MazeBuilder.csproj.GenerateResource.Cache
+C:\WS\MazeBuilder\MazeBuilder\obj\Debug\MazeBuilder.exe
+C:\WS\MazeBuilder\MazeBuilder\obj\Debug\MazeBuilder.pdb
